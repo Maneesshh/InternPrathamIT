@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_Loginsignup.cshtml";
+}
+@model Event.ViewModals.Register
+<div class="container" style="margin-top:70px;">
+    <div class="row">
+        <div class="col-6 offset-3 border border-primary rounded">
+            <div class="text-center">
+                <h1>SignUp</h1>
+            </div>
+            <h3 class="text-danger text-center">@TempData["Error Message"]</h3>
+            <form class="mx-1 mx-md-4" method="post" asp-controller="Home" asp-action="SignUp">
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="" for="form3Example1c"> Name</label>
+                        <input type="text" id="form3Example1c" asp-for="Name" class="form-control" required />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="" for="form3Example3c"> Email</label>
+                        <input type="email" id="form3Example3c" asp-for="Email" class="form-control" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="" for="myFile"> Phone</label>
+                        <input type="text" id="myFile" maxlength="10" min="0" max="10" asp-for="phone" pattern="[0-9]+" class="form-control" required />
+                        <span asp-validation-for="phone" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="" for="form3Example4c">Address</label>
+                        <input type="text" id="form3Example4c" asp-for="Address" class="form-control" required />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <label class="form-check-label" for="inlineCheckbox1">Gender :</label> &nbsp;
+                    <div class="form-outline flex-fill mb-0">
+                        <input class="form-check-input" type="radio" id="inlineCheckbox1" asp-for="Gender" value="Male">
+                        <label class="form-check-label" for="inlineCheckbox1">Male</label>
+                    </div>
+                    <div class="form-outline flex-fill mb-0">
+                        <input class="form-check-input" type="radio" id="inlineCheckbox2" asp-for="Gender" value="Female">
+                        <label class="form-check-label" for="inlineCheckbox2">Female</label>
+                    </div>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="" for="form3Example4cd">Password</label>
+                        <input type="password" id="form3Example4cd" asp-for="Password" class="form-control" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                        <label class="" for="form3Example4cd">Confirm Password</label>
+                        <input type="password" id="form3Example4cd" asp-for="ConfirmPassword" class="form-control" required />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                @*  <div class="form-check d-flex justify-content-center mb-5">
+                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                <label class="form-check-label" for="form2Example3">
+                I agree all statements in <a href="#!">Terms of service</a>
+                </label>
+                </div>*@
+
+                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+

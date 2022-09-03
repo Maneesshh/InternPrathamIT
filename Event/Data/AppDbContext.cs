@@ -3,6 +3,7 @@ using System.Net;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Event.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Event.Data
 {
@@ -13,6 +14,7 @@ namespace Event.Data
 
         }
         public DbSet<Eventss> Events { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

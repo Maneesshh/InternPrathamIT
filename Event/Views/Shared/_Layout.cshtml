@@ -27,15 +27,26 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Book Event</a>
                         </li>
+        @*                <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registeruser">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary" asp-area="" asp-controller="Home" asp-action="SignUp">SignUp</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-danger" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                        </li>*@
 
                     </ul>
 
                 </div>
-                <button type="button" class="btn btn-info pull-end" data-toggle="modal" data-target="#myModal1">LogIn</button> &nbsp; &nbsp;
-                <button type="button" class="btn btn-info pull-end" data-toggle="modal" data-target="#myModal">Register</button>
-    
+                @if (User.Identity.IsAuthenticated){
+                    <div class="navbar float-end"><span>Welcome:</span><span>@User.Identity.Name</span>&nbsp;<a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="LogOut">Logout</a></div>
+                }
+@*                <button type="button" class="btn btn-info pull-end" data-toggle="modal" data-target="#myModal">Add Event</button>
+*@    
             </div>
         </nav>
     </header>

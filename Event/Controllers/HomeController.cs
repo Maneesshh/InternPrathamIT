@@ -2,10 +2,15 @@
 using Event.Data;
 using Event.Models;
 using Event.ViewModals;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NuGet.Protocol.Plugins;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Event.Controllers
 {
@@ -20,24 +25,27 @@ namespace Event.Controllers
         //    _logger = logger;
         //}
         private AppDbContext Context { get; }
-        public HomeController(AppDbContext _context,IWebHostEnvironment webHostEnvironment, INotyfService notyf,ILogger<HomeController> logger)
+
+        public HomeController(AppDbContext _context, IWebHostEnvironment webHostEnvironment, INotyfService notyf, ILogger<HomeController> logger)
         {
             this.Context = _context;
             _notyf = notyf;
             _logger = logger;
             WebHostEnvironment = webHostEnvironment;
         }
-
         public IActionResult Index()
         {
-            
+
             return View(Context.Events.ToList());
         }
+        [Authorize]
 
         public IActionResult Privacy()
         {
             return View(Context.Events.ToList());
         }
+        [Authorize]
+
         public IActionResult AddEvent(EventsVM events)
         {
             string stringFile = upload(events);
@@ -54,16 +62,21 @@ namespace Event.Controllers
             _notyf.Success("Event Inserted Successfully");
             return RedirectToAction("Index");
         }
+        [Authorize]
+
         public IActionResult EditEvent(int id)
         {
             var data = Context.Events.Find(id);
             return View(data);
         }
+        [Authorize]
+
         [HttpPost]
+
         public IActionResult UpdateEvent(EventsVM update)
         {
             string stringFile = upload(update);
-            if (update.Image !=null)
+            if (update.Image != null)
             {
                 var data = Context.Events.Find(update.Id);
                 string delDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images", data.Image);
@@ -95,6 +108,9 @@ namespace Event.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize]
+
         public IActionResult Delete(int id)
         {
             var data = Context.Events.Find(id);
@@ -103,6 +119,8 @@ namespace Event.Controllers
             _notyf.Success("Deleted Successfully");
             return RedirectToAction("Index");
         }
+        [Authorize]
+
         private string upload(EventsVM s)
         {
             string fileName = "";
@@ -118,12 +136,99 @@ namespace Event.Controllers
             }
             return fileName;
         }
+        [Authorize]
+
         public IActionResult BookEvent(int id)
         {
             var data = Context.Events.Find(id);
             _notyf.Warning("Please Register Yourself First");
             return View(data);
         }
+        [Authorize]
+
+        public IActionResult Registeruser()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(LoginVM login)
+        {
+            if (ModelState.IsValid)
+            {
+                var data = Context.Users.Where(e => e.Email == login.Email).SingleOrDefault();
+                if (data != null)
+                {
+                    bool isValid = (data.Email == login.Email && data.Password == login.Password);
+                    if (isValid)
+                    {
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, login.Email) }, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                        HttpContext.Session.SetString("Username", login.Email);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        TempData["password"] = "Password Incorrect";
+                        return View(login);
+                    }
+
+                }
+                else
+                {
+                    TempData["Email"] = "Email not Found";
+                    return View(login);
+                }
+            }
+            else
+            {
+                TempData["errorMessage"] ="Found";
+                return View(login);
+            }
+        }
+        [Authorize]
+
+        public IActionResult LogOut()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
+
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SignUp(Register register)
+        {
+            if (ModelState.IsValid)
+            {
+                var data = new User
+                {
+                    Name = register.Name,
+                    Email = register.Email,
+                    Password = register.Password,
+                    Phone = register.phone,
+                    Address = register.Address,
+                    Gender = register.Gender,
+                };
+                Context.Users.Add(data);
+                Context.SaveChanges();
+                _notyf.Success("Please Login using same Credentials");
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                TempData["errorMessage"] = "Empty Form Cannot be Submitted";
+                return View(register);
+
+            }
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
