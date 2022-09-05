@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int a = 1;
+}
+
+
+<h2>Bookings Details</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>SN</th>
+            <th>Event Id</th>
+            <th>User ID</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@a</td>
+                <td>@item.Eid</td>
+                <td>@item.Uid</td>
+                <td>
+                    <a href="" class="btn btn-danger" name="Delete">Delete</a> &nbsp;&nbsp;
+                </td>
+                @{
+                    a++;
+                }
+            </tr>
+        }
+    </tbody>
+</table>

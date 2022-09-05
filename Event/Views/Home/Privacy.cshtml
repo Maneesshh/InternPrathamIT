@@ -1,97 +1,98 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index";
+    int a = 1;
 }
 <div class="container">
     <!-- Trigger the modal with a button -->
-@*    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Register</button>
-*@
+    @*    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Register</button>
+    *@
     <!-- Modal -->
     <div class="modal fade " id="myModal" role="dialog">
         <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
-@*                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                @*                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
                 </div>*@
                 <div class="modal-body">
                     <section class="vh-100" style="background-color: #eee;">
-                            <div class="row d-flex justify-content-center align-items-center h-100">
-                                <div class="col-lg-14 col-xl-11">
-                                    <div class="card text-black" style="border-radius: 25px;">
-                                        <div class="card-body p-md-5">
-                                            <div class="row justify-content-center">
-                                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-lg-14 col-xl-11">
+                                <div class="card text-black" style="border-radius: 25px;">
+                                    <div class="card-body p-md-5">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add Event</p>
+                                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add Event</p>
 
-                                                    <form class="mx-1 mx-md-4" enctype="multipart/form-data" method="post" asp-controller="Home" asp-action="AddEvent">
+                                                <form class="mx-1 mx-md-4" enctype="multipart/form-data" method="post" asp-controller="Home" asp-action="AddEvent">
 
-                                                        <div class="d-flex flex-row align-items-center mb-4">
-                                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                                            <div class="form-outline flex-fill mb-0">
-                                                            <label class="" for="form3Example1c"> Name</label>
-                                                                <input type="text" id="form3Example1c" name="name" class="form-control" required/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="d-flex flex-row align-items-center mb-4">
-                                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                                            <div class="form-outline flex-fill mb-0">
-                                                            <label class="" for="form3Example3c"> Venue</label>
-                                                                <input type="text" id="form3Example3c" name="venue" class="form-control" required />
-                                                            </div>
-                                                        </div>
                                                     <div class="d-flex flex-row align-items-center mb-4">
-                                                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                                    <div class="form-outline flex-fill mb-0">
-                                                        <label class="" for="myFile"> Venue Image</label>
-                                                        <input type="file" id="myFile" name="image" class="form-control" required />
-                                                    </div>
-                                                       </div>
-
-                                                        <div class="d-flex flex-row align-items-center mb-4">
-                                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                                            <div class="form-outline flex-fill mb-0">
-                                                            <label class="" for="form3Example4c">Price</label>
-                                                                <input type="number" id="form3Example4c" name="price" class="form-control" required />
-                                                            </div>
+                                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                        <div class="form-outline flex-fill mb-0">
+                                                            <label class="" for="form3Example1c"> Name</label>
+                                                            <input type="text" id="form3Example1c" name="name" class="form-control" required />
                                                         </div>
+                                                    </div>
 
-                                                        <div class="d-flex flex-row align-items-center mb-4">
-                                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                                            <div class="form-outline flex-fill mb-0">
+                                                    <div class="d-flex flex-row align-items-center mb-4">
+                                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                        <div class="form-outline flex-fill mb-0">
+                                                            <label class="" for="form3Example3c"> Venue</label>
+                                                            <input type="text" id="form3Example3c" name="venue" class="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center mb-4">
+                                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                        <div class="form-outline flex-fill mb-0">
+                                                            <label class="" for="myFile"> Venue Image</label>
+                                                            <input type="file" id="myFile" name="image" class="form-control" required />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex flex-row align-items-center mb-4">
+                                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                        <div class="form-outline flex-fill mb-0">
+                                                            <label class="" for="form3Example4c">Price</label>
+                                                            <input type="number" id="form3Example4c" name="price" class="form-control" required />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex flex-row align-items-center mb-4">
+                                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                        <div class="form-outline flex-fill mb-0">
                                                             <label class="" for="form3Example4cd">Enter Date</label>
                                                             <input type="datetime-local" data-date-inline-picker="true" id="form3Example4cd" name="Time" class="form-control" required />
-                                                            </div>
                                                         </div>
+                                                    </div>
 
-                                                      @*  <div class="form-check d-flex justify-content-center mb-5">
-                                                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                                                            <label class="form-check-label" for="form2Example3">
-                                                                I agree all statements in <a href="#!">Terms of service</a>
-                                                            </label>
-                                                        </div>*@
+                                                    @*  <div class="form-check d-flex justify-content-center mb-5">
+                                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                                    <label class="form-check-label" for="form2Example3">
+                                                    I agree all statements in <a href="#!">Terms of service</a>
+                                                    </label>
+                                                    </div>*@
 
-                                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                            <button type="submit" class="btn btn-primary btn-lg">Add</button>
-                                                        </div>
+                                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                        <button type="submit" class="btn btn-primary btn-lg">Add</button>
+                                                    </div>
 
-                                                    </form>
+                                                </form>
 
-                                                </div>
-   @*                                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                                         class="img-fluid" alt="Sample image">
-
-                                                </div>*@
                                             </div>
+                                            @*                                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                            class="img-fluid" alt="Sample image">
+
+                                            </div>*@
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </section>
                 </div>
                 <div class="modal-footer">
@@ -117,78 +118,84 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>1</td>
-                <td>@item.Name</td>
-                <td>@item.Venue</td>
-                <td>@item.Price</td>
-                <td>@item.Time</td>
-                <td>
-                    <img src="/Images/@item.Image" width="40" height="40"/>
-                </td>
-                <td> <a href="/Home/BookEvent/@item.Id" class="btn btn-primary" name="Book" >Book</a> &nbsp;&nbsp;
+                <tr>
+                    <td>@a</td>
+                    <td>@item.Name</td>
+                    <td>@item.Venue</td>
+                    <td>@item.Price</td>
+                    <td>@item.Time</td>
+                    <td>
+                        <img src="/Images/@item.Image" width="40" height="40" />
                     </td>
-            </tr>
+                    <td>
+                        <a href="/Home/BookEvent/@item.Id" class="btn btn-primary" name="Book">Book</a> &nbsp;&nbsp;
+                    </td>
+                    @{
+                        a++;
+
+                }
+                </tr>
             }
         </tbody>
     </table>
 </div>
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      <div class="modal-header ">
-        <h5 class="modal-title">Log</h5>
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title">Log</h5>
 
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-          </div>
+            </div>
 
-      <div class="modal-body">
-<form>
-  <!-- Email input -->
-  <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
-    <label class="" for="form2Example1">Email address</label>
-  </div>
+            <div class="modal-body">
+                <form>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form2Example1" class="form-control" />
+                        <label class="" for="form2Example1">Email address</label>
+                    </div>
 
-  <!-- Password input -->
-  <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
-    <label class="" for="form2Example2">Password</label>
-  </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form2Example2" class="form-control" />
+                        <label class="" for="form2Example2">Password</label>
+                    </div>
 
-  <!-- 2 column grid layout for inline styling -->
-  <div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      <!-- Checkbox -->
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-        <label class="form-check-label" for="form2Example31"> Remember me </label>
-      </div><br />
-    </div> 
+                    <!-- 2 column grid layout for inline styling -->
+                    <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                            <!-- Checkbox -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                                <label class="form-check-label" for="form2Example31"> Remember me </label>
+                            </div><br />
+                        </div>
 
 
-  </div>
+                    </div>
 
-  <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-      <div class="text-center">
-      <!-- Simple link -->
-      <a href="#!">Forgot password?</a>
+                    <!-- Submit button -->
+                    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                    <div class="text-center">
+                        <!-- Simple link -->
+                        <a href="#!">Forgot password?</a>
+                    </div>
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>Not a member? <a href="#!">Register</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @*        <button type="button" class="btn btn-primary">Save changes</button>
+                *@        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  <!-- Register buttons -->
-  <div class="text-center">
-    <p>Not a member? <a href="#!">Register</a></p>
-  </div>
-</form>      </div>
-      <div class="modal-footer">
-@*        <button type="button" class="btn btn-primary">Save changes</button>
-*@        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 

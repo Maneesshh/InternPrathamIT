@@ -5,30 +5,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Event.Migrations
 {
-    public partial class UserTable : Migration
+    public partial class Event_book : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Event_User",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false),
-                    Phone = table.Column<long>(type: "bigint", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false)
+                    Eid = table.Column<int>(type: "integer", nullable: false),
+                    Uid = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Event_User", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Event_User");
         }
     }
 }

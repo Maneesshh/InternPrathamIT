@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Event.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220903111641_User Table after gender")]
-    partial class UserTableaftergender
+    [Migration("20220904022221_Event_book")]
+    partial class Event_book
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,23 @@ namespace Event.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Event.Models.BookEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Eid")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Uid")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Event_User");
+                });
 
             modelBuilder.Entity("Event.Models.Eventss", b =>
                 {

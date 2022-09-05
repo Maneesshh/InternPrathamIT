@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NuGet.Protocol.Plugins;
@@ -33,6 +34,8 @@ namespace Event.Controllers
             _logger = logger;
             WebHostEnvironment = webHostEnvironment;
         }
+        [Authorize]
+
         public IActionResult Index()
         {
 
@@ -108,19 +111,16 @@ namespace Event.Controllers
 
             return RedirectToAction("Index");
         }
-
         [Authorize]
-
         public IActionResult Delete(int id)
         {
             var data = Context.Events.Find(id);
             Context.Events.Remove(data);
             Context.SaveChanges();
-            _notyf.Success("Deleted Successfully");
+            _notyf.Warning("Deleted Successfully");
             return RedirectToAction("Index");
         }
         [Authorize]
-
         private string upload(EventsVM s)
         {
             string fileName = "";
@@ -137,11 +137,9 @@ namespace Event.Controllers
             return fileName;
         }
         [Authorize]
-
         public IActionResult BookEvent(int id)
         {
             var data = Context.Events.Find(id);
-            _notyf.Warning("Please Register Yourself First");
             return View(data);
         }
         [Authorize]
@@ -153,26 +151,27 @@ namespace Event.Controllers
         [HttpPost]
         public IActionResult Login(LoginVM login)
         {
+
             if (ModelState.IsValid)
             {
                 var data = Context.Users.Where(e => e.Email == login.Email).SingleOrDefault();
                 if (data != null)
                 {
-                    bool isValid = (data.Email == login.Email && data.Password == login.Password);
+                    bool isValid = (data.Email == login.Email && BCrypt.Net.BCrypt.Verify(login.Password, data.Password) );
                     if (isValid)
                     {
                         var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, login.Email) }, CookieAuthenticationDefaults.AuthenticationScheme);
                         var principal = new ClaimsPrincipal(identity);
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                         HttpContext.Session.SetString("Username", login.Email);
-                        return RedirectToAction("Index");
+                        HttpContext.Session.SetInt32("Id", data.Id);
+                        return RedirectToAction("Privacy");
                     }
                     else
                     {
                         TempData["password"] = "Password Incorrect";
                         return View(login);
                     }
-
                 }
                 else
                 {
@@ -205,30 +204,50 @@ namespace Event.Controllers
         [HttpPost]
         public IActionResult SignUp(Register register)
         {
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(register.Password);
             if (ModelState.IsValid)
             {
-                var data = new User
+                var data1 = Context.Users.Where(e => e.Email == register.Email).SingleOrDefault();
+                if (data1 == null)
                 {
-                    Name = register.Name,
-                    Email = register.Email,
-                    Password = register.Password,
-                    Phone = register.phone,
-                    Address = register.Address,
-                    Gender = register.Gender,
-                };
-                Context.Users.Add(data);
-                Context.SaveChanges();
-                _notyf.Success("Please Login using same Credentials");
-                return RedirectToAction("Login");
+                    var data = new User
+                    {
+                        Name = register.Name,
+                        Email = register.Email,
+                        Password = passwordHash,
+                        Phone = register.phone,
+                        Address = register.Address,
+                        Gender = register.Gender,
+                    };
+                    Context.Users.Add(data);
+                    Context.SaveChanges();
+                    _notyf.Success("Please Login using same Credentials");
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    TempData["errorEmail"] = "Email already registered";
+                    return View(register);
+                }
             }
             else
             {
                 TempData["errorMessage"] = "Empty Form Cannot be Submitted";
                 return View(register);
-
             }
         }
+        public IActionResult Book(BookEvent book)
+        {
+            Context.Bookings.Add(book);
+            Context.SaveChanges();
+            _notyf.Success("Booked Successfully");
+            return RedirectToAction("ViewBook");
+        }
 
+        public IActionResult ViewBook()
+        {
+            return View(Context.Bookings.ToList());
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

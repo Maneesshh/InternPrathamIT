@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZtzBb8eZFZv4LGQZe7O5izokMCGVrpPXQWXIm9ymmsw=",
+  "Hash": "InHSk0zIiSSuOOzLZ+p3mOPwfnZSjWzvpagRO9qRTuE=",
   "Source": "Event",
   "BasePath": "_content/Event",
   "Mode": "Default",
@@ -238,6 +238,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\4be0beb6-eafe-4ae6-ae25-4b69120772d6-IMG_20211220_091255_TIMEBURST2.jpg"
     },
     {
+      "Identity": "C:\\Users\\Rude\\source\\repos\\Event\\Event\\wwwroot\\Images\\662a0935-8dda-4f32-b819-9a5098c8975b-IMG_20211214_141407.jpg",
+      "SourceId": "Event",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Rude\\source\\repos\\Event\\Event\\wwwroot\\",
+      "BasePath": "_content/Event",
+      "RelativePath": "Images/662a0935-8dda-4f32-b819-9a5098c8975b-IMG_20211214_141407.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\662a0935-8dda-4f32-b819-9a5098c8975b-IMG_20211214_141407.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Rude\\source\\repos\\Event\\Event\\wwwroot\\Images\\8b175e84-a83c-4f95-b806-25a70a19dd07-IMG_20211214_141407.jpg",
       "SourceId": "Event",
       "SourceType": "Discovered",
@@ -270,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\a23e1924-b3f5-4d51-afb8-ad95ab7b25ef-pp.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Rude\\source\\repos\\Event\\Event\\wwwroot\\Images\\c05acd95-81ae-43fd-877c-30553fb922c4-IMG_20211214_141407.jpg",
+      "SourceId": "Event",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Rude\\source\\repos\\Event\\Event\\wwwroot\\",
+      "BasePath": "_content/Event",
+      "RelativePath": "Images/c05acd95-81ae-43fd-877c-30553fb922c4-IMG_20211214_141407.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\c05acd95-81ae-43fd-877c-30553fb922c4-IMG_20211214_141407.jpg"
     },
     {
       "Identity": "C:\\Users\\Rude\\source\\repos\\Event\\Event\\wwwroot\\Images\\e578e9bd-b761-46d0-b63a-9fdf82c8f664-IMG_20211214_141458.jpg",

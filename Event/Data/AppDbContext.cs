@@ -15,6 +15,8 @@ namespace Event.Data
         }
         public DbSet<Eventss> Events { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<BookEvent> Bookings { get; set; }
+
 
     }
 }

@@ -1,37 +1,18 @@
-﻿@model Event.Models.Eventss
-<form class="mx-1 mx-md-4" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UpdateEvent">
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http;
+<form class="mx-1 mx-md-4" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Book">
     <div class="d-flex flex-row align-items-center mb-4">
         <div class="form-outline flex-fill mb-0">
-            <input type="text" readonly id="form3Example1c" asp-for="Id" class="form-control" required />
+            <input type="hidden" id="form3Example1c" name="Eid"  value="@Model.Id" class="form-control" required />
         </div>
     </div>
     <div class="d-flex flex-row align-items-center mb-4">
         <div class="form-outline flex-fill mb-0">
-            <label class="" for="form3Example1c">Event Name</label>
-            <input type="text" readonly id="form3Example1c" asp-for="Name" class="form-control" required />
-        </div>
-    </div>
-
-    <div class="d-flex flex-row align-items-center mb-4">
-        <div class="form-outline flex-fill mb-0">
-            <label class="" for="form3Example3c"> Venue</label>
-            <input type="text" readonly id="form3Example3c" asp-for="Venue" class="form-control" required />
+            <input type="hidden" id="form3Example1c" name="Uid" value="@HttpContextAccessor.HttpContext.Session.GetInt32("Id")" class="form-control" required />
         </div>
     </div>
 
-    <div class="d-flex flex-row align-items-center mb-4">
-        <div class="form-outline flex-fill mb-0">
-            <label class="" for="form3Example4c">Price</label>
-            <input type="number" id="form3Example4c" asp-for="Price" class="form-control" required />
-        </div>
-    </div>
-
-    <div class="d-flex flex-row align-items-center mb-4">
-        <div class="form-outline flex-fill mb-0">
-            <label class="" for="form3Example4cd">Enter Date</label>
-            <input type="datetime-local" data-date-inline-picker="true" id="form3Example4cd" asp-for="Time" class="form-control" required />
-        </div>
-    </div>
+    <h2>Are You sure You Want to Book??</h2>
 
     @*  <div class="form-check d-flex justify-content-center mb-5">
     <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
@@ -41,7 +22,8 @@
     </div>*@
 
     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-        <button type="submit" class="btn btn-primary btn-lg">Update</button>
+        <button type="submit" class="btn btn-primary btn-lg">Yes</button> &nbsp; &nbsp;
+        <a href="/Home/Privacy" class="btn btn-warning">No</a>
     </div>
 
 </form>

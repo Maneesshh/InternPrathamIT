@@ -23,8 +23,10 @@
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                     <label class="" for="form2Example2">Password</label>
-                    <input type="password" id="form2Example2" name="password" class="form-control" />
+                    <input type="password" id="password" name="password" class="form-control" />
                     <span class="text-danger">@TempData["password"]</span>
+                    <i id="open" class="fa fa-eye float-end" style="margin-top:-25px; margin-right:6px;cursor:pointer" aria-hidden="true"></i>
+                    <i id="closed" class="fa fa-eye-slash float-end" style="margin-top:-25px; margin-right:6px; display:none; cursor:pointer" aria-hidden="true"></i>
                 </div>
 
                 <!-- 2 column grid layout for inline styling -->
@@ -52,5 +54,21 @@
         </div>
     </div>
 </div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#open").click(function () {
+            $("#open").hide();
+            $("#closed").show();
+            $("#password").attr("type", "text");
+        });
+        $("#closed").click(function () {
+            $("#closed").hide();
+            $("#open").show();
+            $("#password").attr("type", "password");
+        });
+    });
 
+</script>
 

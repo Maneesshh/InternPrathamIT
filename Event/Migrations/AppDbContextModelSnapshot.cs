@@ -22,6 +22,23 @@ namespace Event.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Event.Models.BookEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Eid")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Uid")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Event_User");
+                });
+
             modelBuilder.Entity("Event.Models.Eventss", b =>
                 {
                     b.Property<int>("Id")
@@ -55,9 +72,11 @@ namespace Event.Migrations
 
             modelBuilder.Entity("Event.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()

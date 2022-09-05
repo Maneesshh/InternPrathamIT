@@ -9,7 +9,7 @@
             <div class="text-center">
                 <h1>SignUp</h1>
             </div>
-            <h3 class="text-danger text-center">@TempData["Error Message"]</h3>
+            <h3 class="text-danger text-center">@TempData["errorMessage"]</h3>
             <form class="mx-1 mx-md-4" method="post" asp-controller="Home" asp-action="SignUp">
 
                 <div class="d-flex flex-row align-items-center mb-4">
@@ -24,7 +24,7 @@
                     <div class="form-outline flex-fill mb-0">
                         <label class="" for="form3Example3c"> Email</label>
                         <input type="email" id="form3Example3c" asp-for="Email" class="form-control" required />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <span asp-validation-for="Email" class="text-danger">@TempData["errorEmail"]</span>
 
                     </div>
                 </div>
@@ -62,16 +62,20 @@
                 <div class="d-flex flex-row align-items-center mb-4">
                     <div class="form-outline flex-fill mb-0">
                         <label class="" for="form3Example4cd">Password</label>
-                        <input type="password" id="form3Example4cd" asp-for="Password" class="form-control" required />
+                        <input type="password" id="password" asp-for="Password" class="form-control" required />
                         <span asp-validation-for="Password" class="text-danger"></span>
+<i id="open" class="fa fa-eye float-end" style="margin-top:-25px; margin-right:6px;cursor:pointer" aria-hidden="true"></i>
+                    <i id="closed" class="fa fa-eye-slash float-end" style="margin-top:-25px; margin-right:6px; display:none; cursor:pointer" aria-hidden="true"></i>
 
                     </div>
                 </div>
                 <div class="d-flex flex-row align-items-center mb-4">
                     <div class="form-outline flex-fill mb-0">
                         <label class="" for="form3Example4cd">Confirm Password</label>
-                        <input type="password" id="form3Example4cd" asp-for="ConfirmPassword" class="form-control" required />
+                        <input type="password" id="password" asp-for="ConfirmPassword" class="form-control" required />
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        <i id="open" class="fa fa-eye float-end" style="margin-top:-25px; margin-right:6px;cursor:pointer" aria-hidden="true"></i>
+                        <i id="closed" class="fa fa-eye-slash float-end" style="margin-top:-25px; margin-right:6px; display:none; cursor:pointer" aria-hidden="true"></i>
 
                     </div>
                 </div>
@@ -93,3 +97,20 @@
 </div>
 
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#open").click(function () {
+            $("#open").hide();
+            $("#closed").show();
+            $("#password").attr("type", "text");
+        });
+        $("#closed").click(function () {
+            $("#closed").hide();
+            $("#open").show();
+            $("#password").attr("type", "password");
+        });
+    });
+
+</script>
